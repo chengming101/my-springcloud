@@ -1,0 +1,75 @@
+spring:
+  kafka:
+    bootstrap-servers: 47.98.47.243:9092 # 指定kafka 代理地址，可以多个
+    producer: # 生产者
+      retries: 1 # 设置大于0的值，则客户端会将发送失败的记录重新发送
+      # 每次批量发送消息的数量
+      batch-size: 16384
+      buffer-memory: 33554432
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    #=============== consumer  =======================
+    # 指定默认消费者group id
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      group-id: test
+
+
+    # 指定消息key和消息体的编解码方式
+  application:
+    name: user-consumer
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    # consul 配置
+    consul:
+      host: 47.98.47.243
+      port: 8500
+      discovery:
+        register: true
+        # 服务停止时取消注册
+        deregister: true
+        # 表示注册时使用IP而不是hostname
+        prefer-ip-address: true
+        # 执行监控检查的频率
+        health-check-interval: 30s
+        # 设置健康检查失败多长时间后，取消注册
+        health-check-critical-timeout: 30s
+        #        # 健康检查的路径
+        # 健康检查的路径
+        health-check-path: /actuator/info
+        # 注册服务名称
+        service-name: ${spring.application.name}
+        # 服务注册标识，格式为：应用名称+服务器IP+端口
+        instance-id: ${spring.application.name}
+        heartbeat:
+          enabled: true
+      config:
+        # enabled为true表示启用配置管理功能
+        enabled: true
+        # watch选项为配置监视功能，主要监视配置的改变
+        watch:
+          enabled: true
+          delay: 10000
+          wait-time: 30
+        # 表示如果没有发现配置，是否抛出异常，true为是，false为否，当为false时，consul会打印warn级别的日志信息
+        fail-fast: false
+        format: yaml
+        # 配置所在的应用目录名称
+        prefix: consumer
+        profileSeparator: '-'
+        data-key: data
+        name: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+logging:
+  path: /usr/local/deploy/logs

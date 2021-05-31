@@ -1,0 +1,17 @@
+spring:
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        max-idle: 8
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: serene
+    username: root
+    url: jdbc:mysql://localhost:3306/user?useSSL=false&userUniCode=true&characterEncoding=utf-8&autoReconnect=true&serverTimeZone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 8080
