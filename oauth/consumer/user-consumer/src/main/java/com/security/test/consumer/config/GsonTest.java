@@ -22,7 +22,6 @@ public class GsonTest {
     }
 
     public static void main(String[] args) {
-        Objects
         Long ll = System.currentTimeMillis();
         List<Map<String, String>> mapList = new ArrayList<>();
         Map map = new HashMap();
