@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,14 +37,14 @@ public class UserProviderController {
 
     @Autowired
     DataSource dataSource;
-    @Autowired
+    //    @Autowired
     RequestRateLimiter requestRateLimiter;
 
     @Autowired
     UserService userService;
     @Autowired
     StorageImp storageImp;
-    @Autowired
+    //    @Autowired
     MiaoSha miaoSha;
 
     @GetMapping("test4")
@@ -54,6 +55,7 @@ public class UserProviderController {
 
     @GetMapping("test3")
     @SourceType(DynamicHolder.DbType.DB1)
+    @Transactional
     public List<Storage> test3() {
         List list = new ArrayList();
         Iterator iterator = list.iterator();

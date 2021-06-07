@@ -114,7 +114,7 @@ public class UserConsumerController {
 
     @GetMapping("/user")
     public String tesusert(String id) {
-//        System.out.println(userClientService.test1());
+        System.out.println(userClientService.test1());
 //        if (requestRateLimiter.overLimitWhenIncremented(id))
 //            return "稍后再试一下";
 //         return userClientService.test();

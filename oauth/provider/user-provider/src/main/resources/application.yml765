@@ -14,6 +14,13 @@ spring:
     username: root
     url: jdbc:mysql://47.98.47.243:3306/user?useSSL=false&userUniCode=true&characterEncoding=utf-8&autoReconnect=true&serverTimeZone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
+        db1:
+          driver-class-name: com.mysql.jdbc.Driver
+          password: root
+          username: root
+          url: jdbc:mysql://47.98.47.243:3306/user?useSSL=false&userUniCode=true&characterEncoding=utf-8&autoReconnect=true&serverTimeZone=Asia/Shanghai
+          type: com.alibaba.druid.pool.DruidDataSource
+        db2:
 server:
   port: 8080
 
